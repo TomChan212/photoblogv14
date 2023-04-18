@@ -37,9 +37,12 @@
                  <li class="nav-item">
                    <a class="nav-link" href="/user/profile">My Profile</a>
                  </li>
-                    <li class="nav-item">
+
+            <sec:authorize access="isAuthenticated()">
+                <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>
-                    </li>
+                </li>
+            </sec:authorize>
 
         </ul>
     </div>

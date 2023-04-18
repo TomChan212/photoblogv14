@@ -14,10 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 
@@ -61,18 +63,15 @@ public class HomeController {
         return "photoPage";
     }
     @PostMapping("/registerSuccess")
-    public ModelAndView register_success(Users users, Model model, Principal principal) {
-            //userService.registerSuccess(users);
-            users.setRole("ROLE_USER");
+    public ModelAndView register_success(Users users, Model model, Principal principal, @RequestParam(value = "role", required = false) String role) {
+        users.setRole(Objects.requireNonNullElse(role, "ROLE_USER"));
             users.setPassword(passwordEncoder.encode(users.getPassword()));
             userRepository.save(users);
             if(principal != null){
-                ModelAndView mav = new ModelAndView("redirect:/admin/adminIndex");
-                return mav;
+                return new ModelAndView("redirect:/admin/adminIndex");
             }
             else{
-                ModelAndView mav = new ModelAndView("redirect:/login");
-                return mav;
+                return new ModelAndView("redirect:/login");
             }
 
     }

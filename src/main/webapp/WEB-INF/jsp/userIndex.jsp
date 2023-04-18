@@ -15,7 +15,7 @@
 <body>
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">PhotoBlog</a>
+    <a class="navbar-brand" href="/user/userIndex">PhotoBlog</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -43,6 +43,11 @@
                  <li class="nav-item">
                    <a class="nav-link" href="/user/photoHistory">My Photo History</a>
                  </li>
+            <sec:authorize access="isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </sec:authorize>
         </ul>
     </div>
 </nav>

@@ -47,8 +47,7 @@ public class UserController {
 
         Users users = userRepository.findByEmail(currentUserName);
         model.addAttribute("users", users);
-        ModelAndView mav = new ModelAndView("userProfile");
-        return mav;
+        return new ModelAndView("userProfile");
     }
     //show user index
     @GetMapping("/userIndex")
@@ -112,8 +111,7 @@ public class UserController {
     @GetMapping("/photos/upload")
     public ModelAndView uploadPhoto(@ModelAttribute("photo") Photo photo, Model model){
         model.addAttribute("photo", new Photo());
-        ModelAndView mav = new ModelAndView("/photoupload");
-        return mav;
+        return new ModelAndView("/photoupload");
     }
     @PostMapping("/photosUploadSuccess")
     public ModelAndView uploadUserPhoto(@ModelAttribute Photo photo, @RequestParam("profileimage") MultipartFile file, Model model, Principal principal) throws IOException {
@@ -158,8 +156,7 @@ public class UserController {
 
 
         model.addAttribute("message", "Photo uploaded successfully");
-        ModelAndView mav = new ModelAndView("/photouploadsuccess");
-        return mav;
+        return new ModelAndView("/photouploadsuccess");
     }
     //delete photo
     @GetMapping("/photos/delete/{id}")
@@ -178,8 +175,7 @@ public class UserController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid photo Id:" + id));
         model.addAttribute("photo", photo);
         model.addAttribute("id", id);
-        ModelAndView mav = new ModelAndView("updatePhoto");
-        return mav;
+        return new ModelAndView("updatePhoto");
     }
     @PostMapping("/photos/{id}/update")
     public ModelAndView updatePhoto(@PathVariable("id") String id, @ModelAttribute("photo") Photo photo, Model model) {
@@ -190,8 +186,7 @@ public class UserController {
         photo.setUploadDateTime(currentPhoto.getUploadDateTime());
         photo.setUsers(currentPhoto.getUsers());
         photoRepository.save(photo);
-        ModelAndView mav = new ModelAndView("redirect:/user/photos/" + photoId);
-        return mav;
+        return new ModelAndView("redirect:/user/photos/" + photoId);
     }
     //delete users
     @GetMapping("/delete/{id}")

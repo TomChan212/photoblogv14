@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,12 +22,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/adminIndex">ADMIN PANEL</a>
+                </li>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
             <li class="nav-item">
-                <a class="nav-link" href="/user/userIndex">Login</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
-            </li>
+            </sec:authorize>
               <li class="nav-item">
                                <a class="nav-link" href="/user/photos/upload">Upload Photo</a>
                              </li>
@@ -36,6 +41,14 @@
                              <li class="nav-item">
                                <a class="nav-link" href="/user/profile">My Profile</a>
                              </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+            </li>
+            <sec:authorize access="isAuthenticated()">
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+            </sec:authorize>
         </ul>
     </div>
 </nav>

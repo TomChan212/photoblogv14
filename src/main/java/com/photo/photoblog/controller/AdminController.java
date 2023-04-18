@@ -36,22 +36,19 @@ public class AdminController {
         model.addAttribute("photo", photo);
         model.addAttribute("comment", comment);
 
-        ModelAndView mav = new ModelAndView("/adminIndex");
-        return mav;
+        return new ModelAndView("/adminIndex");
     }
 
     @GetMapping("/editUser/{id}")
     public ModelAndView editUser(@PathVariable("id") Long id, Model model) {
         Users users = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         model.addAttribute("users", users);
-        ModelAndView mav = new ModelAndView("/editUser");
-        return mav;
+        return new ModelAndView("/editUser");
     }
     @PostMapping("editUser/{id}/update")
     public ModelAndView updateUser(Users users, Model model) {
         userRepository.save(users);
-        ModelAndView mav = new ModelAndView("redirect:/admin/adminIndex");
-        return mav;
+        return new ModelAndView("redirect:/admin/adminIndex");
     }
 
 
