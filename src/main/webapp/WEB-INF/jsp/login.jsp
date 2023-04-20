@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">register</a>
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
             </ul>
         </div>
