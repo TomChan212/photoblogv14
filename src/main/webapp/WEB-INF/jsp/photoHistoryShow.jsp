@@ -59,9 +59,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Comment</th>
-                <th>Date</th>
                 <th>Title</th>
+                <th>Date</th>
                 <th>Description</th>
             </tr>
         </thead>
@@ -69,9 +68,8 @@
             <%-- Iterate over the comments made by the user --%>
             <c:forEach items="${photo}" var="c">
                 <tr>
-                    <td><c:out value="${c.image}"/></td>
-                    <td><c:out value="${c.uploadDateTime}"/></td>
                     <td><c:out value="${c.title}"/></td>
+                    <td><c:out value="${c.uploadDateTime}"/></td>
                     <td><c:out value="${c.description}"/></td>
                 </tr>
             </c:forEach>
