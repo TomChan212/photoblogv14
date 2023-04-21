@@ -77,7 +77,7 @@
                           <p class="card-text">Time: <small class="text-muted"><c:out value="${c.uploadDateTime}"/></small></p>
 
                                 <form action="<c:url value='/photos/'/>${c.id}">
-                                    <button class="btn btn-primary">Comment</button>
+                                    <button class="btn btn-primary">Photo page</button>
                                 </form>
 
 

@@ -47,6 +47,7 @@ public class UserController {
 
         Users users = userRepository.findByEmail(currentUserName);
         model.addAttribute("users", users);
+        model.addAttribute("photos", photoRepository.findAllByUsers(users));
         return new ModelAndView("userProfile");
     }
     //show user index

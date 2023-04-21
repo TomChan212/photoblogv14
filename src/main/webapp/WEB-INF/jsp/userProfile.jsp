@@ -59,10 +59,10 @@
           <h4 class="mb-0">My Profile</h4>
         </div>
         <div class="card-body">
-                                    <p class="card-text">Username:<c:out value="${users.username}"/></p>
-                                    <p class="card-text">Email:<c:out value="${users.email}"/></p>
-                                    <p class="card-text">Ph.Number:<c:out value="${users.phoneNumber}"/></p>
-                                    <p class="card-text">Bio:<c:out value="${users.bio}"/></p>
+            <h5>Username: </h5>     <p class="card-text"><c:out value="${users.username}"/></p>
+            <h5>Email: </h5>     <p class="card-text"><c:out value="${users.email}"/></p>
+            <h5>Ph.Number: </h5>     <p class="card-text"><c:out value="${users.phoneNumber}"/></p>
+            <h5>Bio: </h5>     <p class="card-text"><c:out value="${users.bio}"/></p>
             <h3 class="card-text" style="text-align:right">
             <a href="/user/profile/update" class="btn btn-primary">Edit</a>
           </h3>
@@ -73,6 +73,41 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row justify-content-left">
+        <div class="card-header">
+            <h4 class="mb-0">My Photos</h4>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <%-- Loop through all photos and display each in a card --%>
+            <c:forEach var="c" items="${photos}" varStatus="iterStat">
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <img class="card-img-top" src="<c:url value='/'/>${c.image}" alt="Card image cap">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Title:<c:out value="${c.title}"/></h5>
+                            <h6 class="card-text">Description: </h6>
+                            <p class="card-text"><c:out value="${c.description}"/></p>
+                            <p class="card-text">Time: <small class="text-muted"><c:out value="${c.uploadDateTime}"/></small></p>
+                            <form action="<c:url value='/photos/'/>${c.id}">
+                                <button class="btn btn-primary">Photo page</button>
+                            </form>
+                        </div>
+                    </div>
+                        <%-- Create a new row after every 3 photos --%>
+                    <c:if test="${iterStat.index % 3 == 2}">
+                        <div class="w-100"></div>
+                    </c:if>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
