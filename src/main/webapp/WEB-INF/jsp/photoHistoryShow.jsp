@@ -55,12 +55,14 @@
 <!-- Content -->
 
 <div class="container">
-    <h1>Comment History</h1>
+    <h1>Photos History</h1>
     <table class="table">
         <thead>
             <tr>
                 <th>Comment</th>
                 <th>Date</th>
+                <th>Title</th>
+                <th>Description</th>
             </tr>
         </thead>
         <tbody>
